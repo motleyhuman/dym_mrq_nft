@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYM PLAYGROUND WHALES</title>
+    <style>
+        body {
+            font-family: 'Fraunces', sans-serif;
+            margin: 0;
+            height: 100vh;
+            background-color: #A74CBE; /* Arka plan rengi */
+            overflow: hidden;
+        }
+
+        .heading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; /* Yükseklik ayarı */
+            z-index: 1; /* Başlığın yıldızların üzerinde olmasını sağla */
+        }
+
+        .heading {
+            font-size: 58px;
+            font-weight: bold;
+            color: white;
+            margin: 0; /* Varsayılan marjı kaldır */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 2; /* Butonların ön planda olması için */
+        }
+
+        button {
+            background-color: #1B2129;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            margin-left: 20px;
+            border-radius: 10px;
+        }
+
+        .star {
+            position: absolute;
+            width: 30px; /* Yıldız boyutu */
+            height: 30px; /* Yıldız boyutu */
+            background-image: url('https://r.resimlink.com/DQmXRxU8vw.png'); /* Yıldız resmi */
+            background-size: cover; /* Resmin kapsaması için */
+            z-index: 0; /* Yıldızların arka planda olması için */
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="heading-container">
+        <div class="heading">DYM PLAYGROUND WHALES</div>
+    </div>
+    
+    <div class="button-container">
+    <button onclick="window.open('https://playground.dymension.xyz/rollapps/motleyhuman_10672-1/dashboard', '_blank')">Rollapp</button>
+    <button onclick="window.open('https://mtl-faucet.vercel.app/', '_blank')">Faucet</button>
+</div>
+
+
+    <div style="display: flex; justify-content: center; flex-grow: 1;">
+    <iframe
+        src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0xc69D9Ec7B4863C836E4dDF2B267a93719c107305&chain=%7B%22name%22%3A%22motleyhuman%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2Fevm.fast-panther-37.telebit.io%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTL%22%2C%22name%22%3A%22MTL%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22motleyhuman%22%2C%22chainId%22%3A10672%2C%22testnet%22%3Atrue%2C%22slug%22%3A%22motleyhuman%22%7D&clientId=0f50759a94e33bcce203dced1d7b6c57&tokenId=0&theme=dark&primaryColor=purple"
+        width="900px"
+        height="600px"
+        style="max-width:100%; border: 0.1px solid #A74CBE; border-radius: 50px; position: absolute; top: 150px; left: 50%; transform: translateX(-50%);"
+        frameborder="0"
+    ></iframe>
+</div>
+
+
+    <script>
+        const starCount = 10; // Maksimum yıldız sayısı
+        let currentStars = 0; // Mevcut yıldız sayısı
+
+        function createStar() {
+            if (currentStars >= starCount) return; // Eğer mevcut yıldız sayısı maksimum ise yeni yıldız oluşturma
+
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = '-30px'; // Yıldızların yukarıdan düşmeye başlaması için
+            document.body.appendChild(star);
+            currentStars++; // Yıldız sayısını artır
+
+            // Rastgele bir süre belirle
+            const floatDuration = Math.random() * 5 + 5; // 5 ile 10 saniye arasında rastgele süre
+            star.style.animation = `float ${floatDuration}s infinite linear`;
+
+            // Yıldızlar ekranın dışında olduğunda kaldır
+            star.addEventListener('animationend', () => {
+                document.body.removeChild(star);
+                currentStars--; // Yıldız sayısını azalt
+            });
+        }
+
+        // Sürekli olarak yıldız oluşturma
+        setInterval(createStar, 1000); // Her 500ms'de bir yeni yıldız oluştur
+    </script>
+</body>
+</html>
